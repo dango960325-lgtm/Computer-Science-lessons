@@ -1,1 +1,1 @@
-# Introduction-to-Computer-Science-lessons
+# Computer-Science-lessons
