@@ -1,4 +1,4 @@
-# Computer-Science-lessons
+# Self-introduction
 
 ## 大家好! 我是***陳允中***  
 我來自新竹市~~建中~~<ins>**建功高中**</ins>  
