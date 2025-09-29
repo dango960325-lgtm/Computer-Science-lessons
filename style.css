@@ -1,9 +1,67 @@
 body {
     font-family: "微軟正黑體", sans-serif;
-    background-color: #f0f8ff;
-    text-align: center;
+    background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 70%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center; /* 文字置中 */
 }
 
 h1 {
     color: #2e8b57;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #444;
+}
+
+.highlight {
+    color: #e63946;
+    font-weight: bold;
+}
+
+/* 照片區塊 */
+.photo-block img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;  /* 圓形 */
+    border: 3px solid #4682b4;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 0;
+    text-align: left;
+    display: inline-block; /* 讓清單置中 */
+}
+
+a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff4500;
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
 }
