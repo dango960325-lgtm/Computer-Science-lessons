@@ -1,137 +1,179 @@
-/* ===== 全局設定 ===== */
 body {
   margin: 0;
   font-family: "Microsoft JhengHei", sans-serif;
   color: white;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  height: 100vh;
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   overflow-x: hidden;
-  position: relative;
 }
 
-/* 星空背景動畫 */
-body::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  animation: moveStars 60s linear infinite;
-}
-@keyframes moveStars {
-  from { background-position: 0 0; }
-  to { background-position: 10000px 10000px; }
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
 }
 
-/* 頭像 */
 .profile-pic {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid white;
-  animation: flyInLeft 1.5s ease-out forwards;
-  opacity: 0;
+  margin-right: 20px;
+  animation: slideInLeft 2s ease-in-out;
 }
 
-/* 名字 */
 .name {
   font-size: 2.5em;
   font-weight: bold;
-  margin: 10px 0;
-  animation: flyInTop 1.5s ease-out forwards;
-  opacity: 0;
+  animation: slideInTop 2s ease-in-out;
 }
 
-/* 連結 */
+.links {
+  margin-top: 10px;
+  animation: slideInRight 2s ease-in-out;
+}
+
 .links a {
-  margin: 0 10px;
-  color: #ffd700;
+  color: #87ceeb;
+  margin-right: 15px;
   text-decoration: none;
-  font-size: 1.2em;
-  animation: flyInRight 1.5s ease-out forwards;
-  opacity: 0;
-  display: inline-block;
+  font-weight: bold;
 }
 
-/* 雷達圖容器 */
+.links a:hover {
+  color: #ffcc70;
+}
+
 .radar {
   width: 300px;
   height: 300px;
-  animation: fadeIn 2s ease-out forwards;
-  opacity: 0;
+  animation: growRadar 2s ease-in-out;
 }
 
-/* 頂部區塊 */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 40px 20px;
-  position: relative;
-  z-index: 2;
+section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+section h2 {
+  border-bottom: 2px solid #87ceeb;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+nav {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #ffcc70;
 }
 
 /* 流星 */
 .meteor {
   position: absolute;
-  width: 2px;
-  height: 100px;
-  background: linear-gradient(-45deg, white, transparent);
-  top: -100px;
-  animation: meteorFall 1s linear forwards;
-}
-@keyframes meteorFall {
-  to {
-    transform: translate(500px, 500px);
-    opacity: 0;
-  }
+  top: 0;
+  width: 3px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  transform: rotate(45deg);
+  animation: fall 2s linear forwards;
 }
 
-/* 飛入動畫 */
-@keyframes flyInLeft {
-  from { transform: translateX(-200px); opacity: 0; }
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+#heart {
+  cursor: pointer;
+  font-size: 2em;
+  transition: transform 0.3s ease;
+}
+
+#heart.pop {
+  animation: heartPop 0.5s ease;
+}
+
+#confetti {
+  display: none;
+}
+
+#confetti.show {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif') center/contain no-repeat;
+  margin: 10px auto;
+}
+
+.note {
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* 回到頂部 */
+#toTop {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 50%;
+  background: #87ceeb;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#toTop:hover {
+  background: #ffcc70;
+}
+
+/* 動畫 */
+@keyframes slideInLeft {
+  from { transform: translateX(-150%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
-@keyframes flyInTop {
-  from { transform: translateY(-200px); opacity: 0; }
+
+@keyframes slideInTop {
+  from { transform: translateY(-150%); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
-@keyframes flyInRight {
-  from { transform: translateX(200px); opacity: 0; }
+
+@keyframes slideInRight {
+  from { transform: translateX(150%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
+
+@keyframes growRadar {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* 內容區塊 */
-section {
-  padding: 80px 20px;
-  max-width: 800px;
-  margin: auto;
-}
-section h2 {
-  margin-bottom: 20px;
-  border-bottom: 2px solid #fff;
-  padding-bottom: 5px;
+@keyframes fall {
+  from { top: -100px; opacity: 1; }
+  to { top: 100vh; left: 200px; opacity: 0; }
 }
 
-/* 目錄 */
-nav {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.6);
-  padding: 10px 20px;
-  border-radius: 20px;
-}
-nav a {
-  margin: 0 10px;
-  color: #87ceeb;
-  text-decoration: none;
-}
-nav a:hover {
-  color: #ffd700;
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
 }
