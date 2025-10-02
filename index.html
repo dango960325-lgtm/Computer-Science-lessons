@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <title>自我介紹 - 陳允中</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>自我介紹</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Self-introduction</h1>
-
-        <!-- 照片區塊 -->
-        <div class="photo-block">
-            <img src="myphoto.jpg" alt="我的照片">
-        </div>
-
-        <h2>大家好! 我是 <span class="highlight">陳允中</span></h2>
-        <p>
-            我來自新竹市 
-            <del>建中</del> 
-            <ins><strong>建功高中</strong></ins>
-        </p>
-
-        <h3>我喜歡～</h3>
-        <ul>
-            <li>打桌球</li>
-            <li>聽音樂</li>
-            <li>聊天</li>
-            <li><strong>嘗</strong><sup>試</sup><sub>新</sub><em>事</em> <ins>物</ins></li>
-        </ul>
-
-        <hr>
-
-        <p>
-            📷 <a href="https://www.instagram.com/dango_9603?igsh=MXh5OGk1OTU5aDZsdQ%3D%3D&utm_source=qr" target="_blank">我的 IG</a>
-        </p>
-        <p>
-            🎁 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" target="_blank">好禮分享</a>
-        </p>
+  <!-- Header -->
+  <div class="header">
+    <img src="你的照片網址" alt="大頭照" class="profile-pic">
+    <div>
+      <div class="name">你的名字</div>
+      <div class="links">
+        <a href="https://instagram.com/你的帳號" target="_blank">Instagram</a>
+        <a href="https://github.com/你的帳號" target="_blank">GitHub</a>
+      </div>
     </div>
+    <div class="radar">
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Sections -->
+  <section id="intro">
+    <h2>自我介紹</h2>
+    <p>這裡寫你的簡單介紹...</p>
+  </section>
+
+  <section id="projects">
+    <h2>專案展示</h2>
+    <p>放上你的作品、GitHub 專案連結...</p>
+  </section>
+
+  <section id="skills">
+    <h2>技能亮點</h2>
+    <p>描述你在程式、創意、邏輯、溝通、領導方面的強項。</p>
+  </section>
+
+  <section id="contact">
+    <h2>聯絡方式</h2>
+    <p>Email: yourmail@example.com</p>
+  </section>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#intro">自我介紹</a>
+    <a href="#projects">專案展示</a>
+    <a href="#skills">技能亮點</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
+
+  <script src="script.js"></script>
 </body>
 </html>
