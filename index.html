@@ -51,6 +51,50 @@
     <a href="#contact">聯絡方式</a>
   </nav>
 
-  <script src="script.js"></script>
+  <!-- JS 寫在這裡 -->
+  <script>
+    // 雷達圖
+    const ctx = document.getElementById('radarChart');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['創意', '邏輯', '程式能力', '溝通技巧', '領導能力'],
+        datasets: [{
+          label: '我的能力',
+          data: [80, 70, 85, 65, 60],
+          fill: true,
+          backgroundColor: 'rgba(135,206,235,0.2)',
+          borderColor: 'rgba(135,206,235,1)',
+          pointBackgroundColor: 'rgba(135,206,235,1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 2000 },
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+            angleLines: { color: "rgba(255,255,255,0.2)" },
+            grid: { color: "rgba(255,255,255,0.2)" },
+            pointLabels: { color: "white" }
+          }
+        },
+        plugins: {
+          legend: { labels: { color: "white" } }
+        }
+      }
+    });
+
+    // 流星動畫
+    function createMeteor() {
+      const meteor = document.createElement("div");
+      meteor.classList.add("meteor");
+      meteor.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(meteor);
+      setTimeout(() => meteor.remove(), 2000);
+    }
+    setInterval(createMeteor, 5000);
+  </script>
 </body>
 </html>
