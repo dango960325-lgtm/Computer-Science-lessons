@@ -1,86 +1,191 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>自我介紹</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- 流星背景 -->
-  <div id="meteors"></div>
-
-  <!-- 主區塊 -->
-  <section class="intro">
-    <div class="profile">
-      <img src="your-photo.jpg" alt="我的照片" class="profile-img">
-      <h1>陳允中</h1>
+  <!-- Header -->
+  <div class="header">
+    <img src="myphoto.jpg" alt="我的帥照" class="profile-pic">
+    <div class="name-block">
+      <div class="name">陳允中</div>
+      <div class="links">
+        <a href="https://www.instagram.com/dango_9603" target="_blank">Instagram</a>
+        <a href="https://github.com/dango960325-lgtm" target="_blank">GitHub</a>
+      </div>
     </div>
+    <div class="radar">
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
 
-    <canvas id="skillsRadar"></canvas>
+  <!-- Sections -->
+  <section id="intro" class="card">
+    <h2 data-zh="自我介紹" data-en="Introduction">自我介紹</h2>
+    <p data-zh="我是陳允中，來自新竹市，每天騎貢丸去上學..." 
+       data-en="I am Chen Yung-Chung from Hsinchu City...">
+       我是陳允中，來自新竹市，每天騎貢丸去上學...
+    </p>
   </section>
 
-  <!-- 經歷區 -->
-  <section class="experience">
-    <h2>幹部經歷</h2>
+  <section id="hobbies" class="card">
+    <h2 data-zh="喜好" data-en="Hobbies">喜好</h2>
     <ul>
-      <li>高二、高三 擔任風紀股長</li>
-      <li>高二 擔任桌球社活動幹部</li>
-    </ul>
-
-    <h2>Leadership Experience (English)</h2>
-    <ul>
-      <li>Discipline Leader in Grade 11 and 12</li>
-      <li>Activity Officer of Table Tennis Club in Grade 11</li>
+      <li data-zh="打桌球" data-en="Playing table tennis">打桌球</li>
+      <li data-zh="聽音樂" data-en="Listening to music">聽音樂</li>
+      <li data-zh="聊天" data-en="Chatting">聊天</li>
     </ul>
   </section>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <section id="achievements" class="card">
+    <h2 data-zh="比賽戰績" data-en="Competition Achievements">比賽戰績</h2>
+    <ul>
+      <li data-zh="國中作文市賽佳作" data-en="Junior high essay contest - Merit Award">國中作文市賽佳作</li>
+      <li data-zh="高中桌球團體市賽第一名" data-en="High school table tennis team - 1st place">高中桌球團體市賽第一名</li>
+    </ul>
+  </section>
+
+  <section id="roles" class="card">
+    <h2 data-zh="幹部經歷" data-en="Leadership Experience">幹部經歷</h2>
+    <ul>
+      <li data-zh="國中副班長一年" data-en="Vice Class Leader for 1 year in junior high">國中副班長一年</li>
+      <li data-zh="高二、高三 擔任風紀股長" data-en="Discipline Leader (11th-12th grade)">高二、高三 擔任風紀股長</li>
+      <li data-zh="高二 擔任桌球社活動幹部" data-en="Table Tennis Club Event Officer (11th grade)">高二 擔任桌球社活動幹部</li>
+    </ul>
+  </section>
+
+  <section id="skills" class="card">
+    <h2 data-zh="技能亮點" data-en="Skills">技能亮點</h2>
+    <ul>
+      <li data-zh="程式：願意分析錯誤，耐心debug" data-en="Programming: Patient in debugging and analyzing problems">程式：願意分析錯誤，耐心debug</li>
+      <li data-zh="創意：偶爾能想到新奇點子" data-en="Creativity: Sometimes come up with new ideas">創意：偶爾能想到新奇點子</li>
+      <li data-zh="邏輯：能夠條理清晰思考" data-en="Logic: Able to think clearly and logically">邏輯：能夠條理清晰思考</li>
+      <li data-zh="溝通：喜歡聊天，樂於傾聽" data-en="Communication: Enjoy chatting and listening to others">溝通：喜歡聊天，樂於傾聽</li>
+      <li data-zh="領導：願意承擔責任，善於協調" data-en="Leadership: Willing to take responsibility and coordinate">領導：願意承擔責任，善於協調</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="card">
+    <h2 data-zh="聯絡方式" data-en="Contact">聯絡方式</h2>
+    <p>Email: dango960325@gmail.com</p>
+  </section>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#intro">自我介紹</a>
+    <a href="#hobbies">喜好</a>
+    <a href="#achievements">比賽戰績</a>
+    <a href="#roles">幹部經歷</a>
+    <a href="#skills">技能亮點</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
+
+  <!-- Footer -->
+  <footer>
+    <div id="viewCount"></div>
+    <div class="like-section">
+      <span id="likeHeart">♡</span>
+      <div>按讚</div>
+    </div>
+  </footer>
+
+  <!-- 回到頂部 -->
+  <button id="backToTop">↑</button>
+
+  <!-- 語言切換 -->
+  <button id="langToggle">EN</button>
+
   <script>
     // Radar chart
-    const ctx = document.getElementById('skillsRadar');
+    const ctx = document.getElementById('radarChart');
     new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['桌球', '音樂', '聊天', '創新'],
+        labels: ['創意', '邏輯', '程式能力', '溝通技巧', '領導能力'],
         datasets: [{
-          label: '我的技能雷達',
-          data: [90, 70, 80, 75],
-          backgroundColor: 'rgba(99, 102, 241, 0.2)',
-          borderColor: 'rgb(99, 102, 241)',
-          pointBackgroundColor: 'rgb(99, 102, 241)'
+          label: '我的能力',
+          data: [70, 60, 50, 80, 70],
+          fill: true,
+          backgroundColor: 'rgba(135,206,235,0.2)',
+          borderColor: 'rgba(135,206,235,1)',
+          pointBackgroundColor: 'rgba(135,206,235,1)'
         }]
       },
       options: {
-        scales: { r: { suggestedMin: 0, suggestedMax: 100 } }
+        responsive: true,
+        animation: { duration: 2000 },
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+            angleLines: { color: "rgba(255,255,255,0.2)" },
+            grid: { color: "rgba(255,255,255,0.2)" },
+            pointLabels: { color: "white" }
+          }
+        },
+        plugins: { legend: { labels: { color: "white" } } }
       }
     });
 
-    // 流星效果
+    // 流星動畫 (隨機數量 + 隨機間隔 + 隨機顏色)
+    const colors = ["white", "#87CEEB", "#dda0dd"]; // 白、淺藍、粉紫
     function createMeteor() {
+      if (document.querySelectorAll(".meteor").length >= 6) return;
       const meteor = document.createElement("div");
-      meteor.className = "meteor";
-
-      // 隨機 X 起始位置
+      meteor.classList.add("meteor");
       meteor.style.left = Math.random() * window.innerWidth + "px";
-      meteor.style.top = "-100px";
-
-      // 隨機顏色（白、藍、粉紫）
-      const colors = ["#ffffff", "#6ec1ff", "#d08bff"];
-      meteor.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      document.getElementById("meteors").appendChild(meteor);
-
-      setTimeout(() => meteor.remove(), 4000); // 移除流星
+      meteor.style.top = "-50px";
+      meteor.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random()*colors.length)]}, transparent)`;
+      document.body.appendChild(meteor);
+      setTimeout(() => meteor.remove(), 3000);
     }
+    function meteorLoop() {
+      createMeteor();
+      setTimeout(meteorLoop, Math.random() * 4000 + 2000); // 2~6秒隨機
+    }
+    meteorLoop();
 
-    // 隨機生成流星
-    setInterval(() => {
-      if (document.querySelectorAll(".meteor").length < 6) {
-        createMeteor();
+
+    // View count
+    let count = localStorage.getItem("viewCount") || 0;
+    count++;
+    localStorage.setItem("viewCount", count);
+    document.getElementById("viewCount").innerText = "觀看次數：" + count;
+
+    // 愛心 & 拉炮
+    const heart = document.getElementById("heart");
+    let liked = false;
+    heart.addEventListener("click", () => {
+      if (!liked) {
+        liked = true;
+        heart.innerText = "❤️";
+        heart.classList.add("pop");
       }
-    }, Math.random() * 2000 + 500);
+    });
+
+
+// 回到頂部
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      toTop.style.display = window.scrollY > 400 ? "block" : "none";
+    });
+    toTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Language toggle
+    const toggle = document.getElementById("langToggle");
+    let lang = "zh";
+    toggle.addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      toggle.innerText = lang === "zh" ? "EN" : "中";
+      document.querySelectorAll("[data-zh]").forEach(el => {
+        el.innerText = lang === "zh" ? el.dataset.zh : el.dataset.en;
+      });
+    });
   </script>
 </body>
 </html>
