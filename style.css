@@ -7,6 +7,32 @@ body {
   overflow-x: hidden;
 }
 
+/* Nav 固定右上角 */
+nav {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;           /* 選單間距 */
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 15px;
+  border-radius: 8px;
+  z-index: 1000;       /* 確保在最上層 */
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95em;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 /* Header 區塊：橫向排版，置中對齊 */
 .header {
   display: flex;
