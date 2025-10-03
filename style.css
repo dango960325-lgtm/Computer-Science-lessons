@@ -95,6 +95,11 @@ footer {
   animation: heartPop 0.5s ease;
 }
 
+.note {
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
 /* 回到頂部 */
 #toTop {
   display: none;
