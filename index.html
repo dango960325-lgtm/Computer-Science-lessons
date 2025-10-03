@@ -60,11 +60,11 @@
   <section id="skills" class="card">
     <h2 data-zh="技能亮點" data-en="Skills">技能亮點</h2>
     <ul>
-      <li data-zh="程式" data-en="Programming">程式</li>
-      <li data-zh="創意" data-en="Creativity">創意</li>
-      <li data-zh="邏輯" data-en="Logic">邏輯</li>
-      <li data-zh="溝通" data-en="Communication">溝通</li>
-      <li data-zh="領導" data-en="Leadership">領導</li>
+      <li data-zh="程式：願意分析錯誤，耐心debug" data-en="Programming: Patient in debugging and analyzing problems">程式：願意分析錯誤，耐心debug</li>
+      <li data-zh="創意：偶爾能想到新奇點子" data-en="Creativity: Sometimes come up with new ideas">創意：偶爾能想到新奇點子</li>
+      <li data-zh="邏輯：能夠條理清晰思考" data-en="Logic: Able to think clearly and logically">邏輯：能夠條理清晰思考</li>
+      <li data-zh="溝通：喜歡聊天，樂於傾聽" data-en="Communication: Enjoy chatting and listening to others">溝通：喜歡聊天，樂於傾聽</li>
+      <li data-zh="領導：願意承擔責任，善於協調" data-en="Leadership: Willing to take responsibility and coordinate">領導：願意承擔責任，善於協調</li>
     </ul>
   </section>
 
@@ -155,8 +155,9 @@
     localStorage.setItem("viewCount", count);
     document.getElementById("viewCount").innerText = "觀看次數：" + count;
 
-    // 愛心 & 拉炮 
+    // 愛心 & 拉炮
     const heart = document.getElementById("heart");
+    const confetti = document.getElementById("confetti");
     let liked = false;
     heart.addEventListener("click", () => {
       if (!liked) {
@@ -168,12 +169,12 @@
       }
     });
 
-    // Back to top
-    const backToTop = document.getElementById("backToTop");
+   // 回到頂部
+    const toTop = document.getElementById("toTop");
     window.addEventListener("scroll", () => {
-      backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+      toTop.style.display = window.scrollY > 400 ? "block" : "none";
     });
-    backToTop.addEventListener("click", () => {
+    toTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
