@@ -1,22 +1,124 @@
-/* 全域設定 */
+/* 背景 */
 body {
   margin: 0;
   font-family: "Microsoft JhengHei", sans-serif;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  color: #fff;
+  color: white;
+  background: radial-gradient(circle at top, #1a237e, #000000 80%);
   overflow-x: hidden;
 }
 
-/* 流星容器 */
-#meteors {
+/* Header */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+  animation: slideInLeft 1.5s ease;
+}
+
+.name {
+  font-size: 2.2em;
+  font-weight: bold;
+  animation: slideInTop 1.5s ease;
+}
+
+.links a {
+  margin: 0 10px;
+  color: #ffccff;
+  text-decoration: none;
+  animation: slideInRight 1.5s ease;
+}
+
+.radar {
+  width: 220px;
+  height: 220px;
+  animation: fadeIn 2s ease;
+}
+
+/* 卡片區塊 */
+.card {
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  backdrop-filter: blur(6px);
+}
+
+/* Nav */
+nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+nav a {
+  margin: 5px 0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+#heart {
+  cursor: pointer;
+  font-size: 2em;
+  transition: transform 0.3s ease;
+}
+
+#heart.pop {
+  animation: heartPop 0.5s ease;
+}
+
+
+/* 回到頂部 */
+#toTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background: #ff4081;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 動畫 */
+@keyframes slideInLeft { from {transform:translateX(-200px); opacity:0;} to {transform:translateX(0); opacity:1;} }
+@keyframes slideInRight { from {transform:translateX(200px); opacity:0;} to {transform:translateX(0); opacity:1;} }
+@keyframes slideInTop { from {transform:translateY(-200px); opacity:0;} to {transform:translateY(0); opacity:1;} }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
 }
 
 /* 流星 */
@@ -24,59 +126,13 @@ body {
   position: absolute;
   width: 3px;
   height: 80px;
-  background: white;
-  opacity: 0.8;
-  transform: rotate(-45deg);
-  animation: fall 3s linear forwards;
+  transform: rotate(45deg);
+  animation: meteorFall 3s linear forwards;
 }
 
-/* 流星動畫 */
-@keyframes fall {
-  from {
-    transform: translateY(0) translateX(0) rotate(-45deg);
-    opacity: 1;
-  }
+@keyframes meteorFall {
   to {
-    transform: translateY(800px) translateX(-800px) rotate(-45deg);
+    transform: translate(-500px, 500px) rotate(45deg);
     opacity: 0;
   }
 }
-
-/* 主區塊 */
-.intro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 60px 20px;
-}
-
-/* 照片與名字 */
-.profile {
-  text-align: center;
-}
-.profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  margin-bottom: 15px;
-}
-
-/* 經歷 */
-.experience {
-  max-width: 700px;
-  margin: auto;
-  padding: 40px 20px;
-}
-.experience h2 {
-  margin-top: 20px;
-  border-bottom: 2px solid #fff;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-.experience ul {
-  list-style: square;
-  padding-left: 20px;
-}
-
