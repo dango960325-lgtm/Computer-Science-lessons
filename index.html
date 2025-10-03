@@ -92,12 +92,24 @@
     </div>
   </footer>
 
-  <!-- 回到頂部 -->
-  <button id="backToTop">↑</button>
-
-  <!-- 語言切換 -->
-  <button id="langToggle">EN</button>
-
+  // 回到頂部
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      toTop.style.display = window.scrollY > 400 ? "block" : "none";
+    });
+    toTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  // 語言切換
+    const langToggle = document.getElementById("langToggle");
+    let currentLang = "zh";
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "zh" ? "en" : "zh";
+      document.querySelectorAll("[data-zh]").forEach(el => {
+        el.innerText = el.getAttribute("data-" + currentLang);
+      });
+      langToggle.innerText = currentLang === "zh" ? "English" : "中文";
+    });
   <script>
     // Radar chart
     const ctx = document.getElementById('radarChart');
@@ -165,7 +177,6 @@
         heart.classList.add("pop");
       }
     });
-
 
 // 回到頂部
     const toTop = document.getElementById("toTop");
