@@ -52,15 +52,23 @@ toTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// 語言切換
-const toggle = document.getElementById("langToggle");
-let lang = "zh";
-toggle.addEventListener("click", () => {
-  lang = lang === "zh" ? "en" : "zh";
-  toggle.innerText = lang === "zh" ? "EN" : "中";
-  document.querySelectorAll("[data-zh]").forEach(el => {
-    el.innerText = lang === "zh" ? el.dataset.zh : el.dataset.en;
+// 取得按鈕
+const langBtn = document.getElementById('langToggle');
+
+// 預設語言是中文
+let isChinese = true;
+
+langBtn.addEventListener('click', () => {
+  // 切換所有 data-zh / data-en 的元素
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.innerText = isChinese ? el.dataset.en : el.dataset.zh;
   });
+  
+  // 切換按鈕文字顯示
+  langBtn.innerText = isChinese ? "ZH" : "EN";
+  
+  // 更新狀態
+  isChinese = !isChinese;
 });
 
 // 觀看次數
