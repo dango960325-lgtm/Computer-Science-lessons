@@ -1,16 +1,18 @@
+/* 基本背景 */
 body {
   margin: 0;
   font-family: "Microsoft JhengHei", sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   color: white;
-  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   overflow-x: hidden;
 }
 
 /* Header */
 .header {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  gap: 20px;
   padding: 40px;
 }
 
@@ -18,162 +20,139 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
-  animation: slideInLeft 2s ease-in-out;
+  border: 3px solid white;
+  animation: slideInLeft 1s ease-out;
+}
+
+.name-block {
+  text-align: center;
+  animation: slideInTop 1s ease-out;
 }
 
 .name {
   font-size: 2.5em;
   font-weight: bold;
-  animation: slideInTop 2s ease-in-out;
-}
-
-.links {
-  margin-top: 10px;
-  animation: slideInRight 2s ease-in-out;
 }
 
 .links a {
   color: #87ceeb;
-  margin-right: 15px;
+  margin: 0 10px;
   text-decoration: none;
-  font-weight: bold;
-}
-
-.links a:hover {
-  color: #ffcc70;
+  font-size: 1.1em;
+  animation: slideInRight 1s ease-out;
 }
 
 .radar {
-  width: 300px;
-  height: 300px;
-  animation: growRadar 2s ease-in-out;
+  width: 250px;
+  animation: fadeIn 2s ease-out;
 }
 
-section {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
+/* Section 卡片 */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  animation: fadeInUp 1.2s ease-out;
 }
 
-section h2 {
-  border-bottom: 2px solid #87ceeb;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+h2 {
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
 }
 
+ul {
+  list-style: square;
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* Nav */
 nav {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 15px 20px;
-  border-radius: 15px;
+  top: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 0 0 0 10px;
 }
 
 nav a {
-  color: #fff;
-  margin-left: 15px;
+  display: block;
+  margin: 5px 0;
+  color: white;
   text-decoration: none;
-}
-
-nav a:hover {
-  color: #ffcc70;
-}
-
-/* 流星 */
-.meteor {
-  position: absolute;
-  top: 0;
-  width: 3px;
-  height: 80px;
-  background: linear-gradient(white, transparent);
-  transform: rotate(45deg);
-  animation: fall 2s linear forwards;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  margin-top: 50px;
 }
 
-#heart {
+.like-section {
+  margin-top: 10px;
+  font-size: 1.5em;
   cursor: pointer;
-  font-size: 2em;
-  transition: transform 0.3s ease;
 }
 
-#heart.pop {
-  animation: heartPop 0.5s ease;
-}
-
-#confetti {
-  display: none;
-}
-
-#confetti.show {
-  display: block;
-  width: 100%;
-  height: 100px;
-  background: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif') center/contain no-repeat;
-  margin: 10px auto;
-}
-
-.note {
-  font-size: 0.9em;
-  margin-top: 5px;
+#likeHeart.pop {
+  animation: pop 0.5s ease;
 }
 
 /* 回到頂部 */
-#toTop {
+#backToTop {
   display: none;
   position: fixed;
-  bottom: 80px;
-  right: 30px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
   background: #87ceeb;
   color: black;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 語言切換 */
+#langToggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #87ceeb;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
 }
 
-#toTop:hover {
-  background: #ffcc70;
+/* 流星 */
+.meteor {
+  position: absolute;
+  width: 3px;
+  height: 80px;
+  background: linear-gradient(45deg, white, rgba(255,255,255,0));
+  transform: rotate(45deg);
+  animation: meteorFall 3s linear forwards;
+}
+
+@keyframes meteorFall {
+  to {
+    transform: translate(-500px, 500px) rotate(45deg);
+    opacity: 0;
+  }
 }
 
 /* 動畫 */
-@keyframes slideInLeft {
-  from { transform: translateX(-150%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInTop {
-  from { transform: translateY(-150%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(150%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes growRadar {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes fall {
-  from { top: -100px; opacity: 1; }
-  to { top: 100vh; left: 200px; opacity: 0; }
-}
-
-@keyframes heartPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.5); }
-  100% { transform: scale(1); }
-}
+@keyframes slideInLeft { from { transform: translateX(-200px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+@keyframes slideInRight { from { transform: translateX(200px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+@keyframes slideInTop { from { transform: translateY(-200px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeInUp { from { transform: translateY(50px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+@keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1); } }
