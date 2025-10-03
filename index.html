@@ -148,20 +148,24 @@
     }
     meteorLoop();
 
+
     // View count
     let count = localStorage.getItem("viewCount") || 0;
     count++;
     localStorage.setItem("viewCount", count);
     document.getElementById("viewCount").innerText = "觀看次數：" + count;
 
-    // Like button
-    const heart = document.getElementById("likeHeart");
+    // 愛心 & 拉炮 
+    const heart = document.getElementById("heart");
     let liked = false;
     heart.addEventListener("click", () => {
-      liked = !liked;
-      heart.textContent = liked ? "❤" : "♡";
-      heart.classList.add("pop");
-      setTimeout(() => heart.classList.remove("pop"), 500);
+      if (!liked) {
+        liked = true;
+        heart.innerText = "❤️";
+        heart.classList.add("pop");
+        confetti.classList.add("show");
+        setTimeout(() => confetti.classList.remove("show"), 4000);
+      }
     });
 
     // Back to top
