@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
+  <!-- 流星層 -->
   <div class="stars"></div>
+
+  <!-- Header -->
   <div class="header">
-    <img src="myphoto.jpg" alt="我的帥照" class="profile-pic">
+    <img src="myphoto.jpg" alt="我的照片" class="profile-pic">
     <div class="name-block">
-      <div class="name">陳允中</div>
+      <div class="name" data-zh="陳允中" data-en="Yun-Chung Chen">陳允中</div>
       <div class="links">
         <a href="https://www.instagram.com/dango_9603" target="_blank">Instagram</a>
         <a href="https://github.com/dango960325-lgtm" target="_blank">GitHub</a>
@@ -23,11 +25,14 @@
     </div>
   </div>
 
+  <!-- 語言切換 -->
+  <button id="langToggle">EN</button>
+
   <!-- Sections -->
   <section id="intro" class="card">
     <h2 data-zh="自我介紹" data-en="Introduction">自我介紹</h2>
     <p data-zh="我是陳允中，來自新竹市，每天騎貢丸去上學..." 
-       data-en="I am Chen Yung-Chung from Hsinchu City...">
+       data-en="I am Yun-Chung Chen from Hsinchu City...">
        我是陳允中，來自新竹市，每天騎貢丸去上學...
     </p>
   </section>
@@ -93,12 +98,10 @@
     </div>
   </footer>
 
-  <!-- 回到頂部 -->
+  <!-- Back to top -->
   <button id="backToTop">↑</button>
 
-  <!-- 語言切換 -->
-  <button id="langToggle">EN</button>
-
+  <!-- JS -->
   <script>
     // Radar chart
     const ctx = document.getElementById('radarChart');
@@ -131,55 +134,55 @@
       }
     });
 
-    // 流星動畫 (隨機數量 + 隨機間隔)
+    // 流星動畫
     function createMeteor() {
-      if (document.querySelectorAll(".meteor").length >= 6) return;
-      const meteor = document.createElement("div");
-      meteor.classList.add("meteor");
-      meteor.style.left = Math.random() * window.innerWidth + "px";
-      meteor.style.top = "-50px";
+      if(document.querySelectorAll('.meteor').length>=6) return;
+      const meteor = document.createElement('div');
+      meteor.classList.add('meteor');
+      meteor.style.left = Math.random()*window.innerWidth+'px';
+      meteor.style.top = Math.random()*window.innerHeight*0.3+'px';
       document.body.appendChild(meteor);
-      setTimeout(() => meteor.remove(), 3000);
+      setTimeout(()=>meteor.remove(), 3000);
     }
     function meteorLoop() {
       createMeteor();
-      setTimeout(meteorLoop, Math.random() * 4000 + 2000); // 2~6秒隨機
+      setTimeout(meteorLoop, Math.random()*4000+2000);
     }
     meteorLoop();
 
-    // View count
-    let count = localStorage.getItem("viewCount") || 0;
+    // 瀏覽次數
+    let count = localStorage.getItem('viewCount') || 0;
     count++;
-    localStorage.setItem("viewCount", count);
-    document.getElementById("viewCount").innerText = "觀看次數：" + count;
+    localStorage.setItem('viewCount', count);
+    document.getElementById('viewCount').innerText = "觀看次數：" + count;
 
-    // Like button
+    // 愛心按讚
     const heart = document.getElementById("likeHeart");
     let liked = false;
-    heart.addEventListener("click", () => {
+    heart.addEventListener("click", ()=>{
       liked = !liked;
-      heart.textContent = liked ? "❤" : "♡";
+      heart.textContent = liked?"❤":"♡";
       heart.classList.add("pop");
-      setTimeout(() => heart.classList.remove("pop"), 500);
+      setTimeout(()=>heart.classList.remove("pop"),500);
     });
 
-    // Back to top
+    // 回到頂部
     const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+    window.addEventListener("scroll", ()=>{
+      backToTop.style.display = window.scrollY>200?"block":"none";
     });
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    backToTop.addEventListener("click", ()=>{
+      window.scrollTo({top:0, behavior:"smooth"});
     });
 
-    // Language toggle
+    // 語言切換
     const toggle = document.getElementById("langToggle");
-    let lang = "zh";
-    toggle.addEventListener("click", () => {
-      lang = lang === "zh" ? "en" : "zh";
-      toggle.innerText = lang === "zh" ? "EN" : "中";
-      document.querySelectorAll("[data-zh]").forEach(el => {
-        el.innerText = lang === "zh" ? el.dataset.zh : el.dataset.en;
+    let lang="zh";
+    toggle.addEventListener("click", ()=>{
+      lang = lang==="zh"?"en":"zh";
+      toggle.innerText = lang==="zh"?"EN":"中";
+      document.querySelectorAll("[data-zh]").forEach(el=>{
+        el.innerText = lang==="zh"?el.dataset.zh:el.dataset.en;
       });
     });
   </script>
