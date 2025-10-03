@@ -156,18 +156,16 @@
     document.getElementById("viewCount").innerText = "觀看次數：" + count;
 
     // 愛心 & 拉炮
-    const heart = document.getElementById("heart");
-    const confetti = document.getElementById("confetti");
+    const heart = document.getElementById("likeHeart");
     let liked = false;
     heart.addEventListener("click", () => {
-      if (!liked) {
-        liked = true;
-        heart.innerText = "❤️";
-        heart.classList.add("pop");
-        confetti.classList.add("show");
-        setTimeout(() => confetti.classList.remove("show"), 4000);
-      }
-    });
+    if (!liked) {
+    liked = true;
+    heart.innerText = "❤️";
+    heart.classList.add("pop");
+    }
+  });
+
 
    // 回到頂部
     const toTop = document.getElementById("toTop");
