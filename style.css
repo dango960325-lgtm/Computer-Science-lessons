@@ -1,147 +1,104 @@
-/* 背景 */
 body {
-  margin: 0;
-  font-family: "Microsoft JhengHei", sans-serif;
+  background: black;
   color: white;
-  background: radial-gradient(circle at top, #1a237e, #000000 80%);
+  font-family: "Microsoft JhengHei", sans-serif;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 
-/* Header */
+/* Header 區塊：橫向排版，置中對齊 */
 .header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 30px;
-  text-align: center;
+  align-items: center;   /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+  gap: 40px;  /* 三個元素之間的距離 */
+  margin-top: 30px;
+  flex-wrap: wrap; /* 螢幕小時自動換行 */
 }
 
 .profile-pic {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
+  object-fit: cover; /* 照片不會被拉扯變形 */
   border: 3px solid white;
-  object-fit: cover;
-  animation: slideInLeft 1.5s ease;
+}
+
+.name-block {
+  text-align: center;
+  max-width: 250px;
 }
 
 .name {
-  font-size: 2.2em;
+  font-size: 2rem;
   font-weight: bold;
-  animation: slideInTop 1.5s ease;
+  margin-bottom: 10px;
 }
 
 .links a {
-  margin: 0 10px;
-  color: #ffccff;
+  display: inline-block;
+  margin: 5px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   text-decoration: none;
-  animation: slideInRight 1.5s ease;
+  color: white;
+  transition: 0.3s;
+}
+.links a:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .radar {
-  width: 220px;
-  height: 220px;
-  animation: fadeIn 2s ease;
+  width: 280px;
+  height: 280px;
 }
 
-/* 卡片區塊 */
 .card {
-  margin: 40px auto;
-  padding: 20px;
-  max-width: 800px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  backdrop-filter: blur(6px);
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  width: 80%;
 }
 
-/* Nav */
-nav {
+/* 流星效果 */
+.meteor {
+  position: fixed;
+  width: 3px;
+  height: 80px;
+  opacity: 0.8;
+  transform: rotate(45deg);
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px) translateX(0) rotate(45deg); }
+  to   { transform: translateY(100vh) translateX(-100vw) rotate(45deg); }
+}
+
+#toTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background: #444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#langToggle {
   position: fixed;
   top: 20px;
   right: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-nav a {
-  margin: 5px 0;
-  padding: 6px 12px;
-  border-radius: 6px;
-  background: rgba(255,255,255,0.1);
+  background: #666;
   color: white;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-nav a:hover {
-  background: rgba(255,255,255,0.3);
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-}
-
-#heart {
-  cursor: pointer;
-  font-size: 2em;
-  transition: transform 0.3s ease;
-}
-
-#heart.pop {
-  animation: heartPop 0.5s ease;
-}
-
-.note {
-  font-size: 0.9em;
-  margin-top: 5px;
-}
-
-/* 回到頂部 */
-#toTop {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 30px;
-  padding: 10px 15px;
   border: none;
-  border-radius: 50%;
-  background: #87ceeb;
-  color: black;
+  padding: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-}
-
-#toTop:hover {
-  background: #ffcc70;
-}
-
-/* 動畫 */
-@keyframes slideInLeft { from {transform:translateX(-200px); opacity:0;} to {transform:translateX(0); opacity:1;} }
-@keyframes slideInRight { from {transform:translateX(200px); opacity:0;} to {transform:translateX(0); opacity:1;} }
-@keyframes slideInTop { from {transform:translateY(-200px); opacity:0;} to {transform:translateY(0); opacity:1;} }
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-@keyframes heartPop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.5); }
-  100% { transform: scale(1); }
-}
-
-/* 流星 */
-.meteor {
-  position: absolute;
-  width: 3px;
-  height: 80px;
-  transform: rotate(45deg);
-  animation: meteorFall 3s linear forwards;
-}
-
-@keyframes meteorFall {
-  to {
-    transform: translate(-500px, 500px) rotate(45deg);
-    opacity: 0;
-  }
 }
