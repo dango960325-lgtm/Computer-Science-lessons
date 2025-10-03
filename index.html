@@ -31,4 +31,156 @@
     </p>
   </section>
 
-  <section id="hobbies" c
+  <section id="hobbies" class="card">
+    <h2 data-zh="喜好" data-en="Hobbies">喜好</h2>
+    <ul>
+      <li data-zh="打桌球" data-en="Playing table tennis">打桌球</li>
+      <li data-zh="聽音樂" data-en="Listening to music">聽音樂</li>
+      <li data-zh="聊天" data-en="Chatting">聊天</li>
+    </ul>
+  </section>
+
+  <section id="achievements" class="card">
+    <h2 data-zh="比賽戰績" data-en="Competition Achievements">比賽戰績</h2>
+    <ul>
+      <li data-zh="國中作文市賽佳作" data-en="Junior high essay contest - Merit Award">國中作文市賽佳作</li>
+      <li data-zh="高中桌球團體市賽第一名" data-en="High school table tennis team - 1st place">高中桌球團體市賽第一名</li>
+    </ul>
+  </section>
+
+  <section id="roles" class="card">
+    <h2 data-zh="幹部經歷" data-en="Leadership Experience">幹部經歷</h2>
+    <ul>
+      <li data-zh="國中副班長一年" data-en="Vice Class Leader for 1 year in junior high">國中副班長一年</li>
+      <li data-zh="高二、高三 擔任風紀股長" data-en="Discipline Leader (11th-12th grade)">高二、高三 擔任風紀股長</li>
+      <li data-zh="高二 擔任桌球社活動幹部" data-en="Table Tennis Club Event Officer (11th grade)">高二 擔任桌球社活動幹部</li>
+    </ul>
+  </section>
+
+  <section id="skills" class="card">
+    <h2 data-zh="技能亮點" data-en="Skills">技能亮點</h2>
+    <ul>
+      <li data-zh="程式" data-en="Programming">程式</li>
+      <li data-zh="創意" data-en="Creativity">創意</li>
+      <li data-zh="邏輯" data-en="Logic">邏輯</li>
+      <li data-zh="溝通" data-en="Communication">溝通</li>
+      <li data-zh="領導" data-en="Leadership">領導</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="card">
+    <h2 data-zh="聯絡方式" data-en="Contact">聯絡方式</h2>
+    <p>Email: dango960325@gmail.com</p>
+  </section>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#intro">自我介紹</a>
+    <a href="#hobbies">喜好</a>
+    <a href="#achievements">比賽戰績</a>
+    <a href="#roles">幹部經歷</a>
+    <a href="#skills">技能亮點</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
+
+  <!-- Footer -->
+  <footer>
+    <div id="viewCount"></div>
+    <div class="like-section">
+      <span id="likeHeart">♡</span>
+      <div>按讚</div>
+    </div>
+  </footer>
+
+  <!-- 回到頂部 -->
+  <button id="backToTop">↑</button>
+
+  <!-- 語言切換 -->
+  <button id="langToggle">EN</button>
+
+  <script>
+    // Radar chart
+    const ctx = document.getElementById('radarChart');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['創意', '邏輯', '程式能力', '溝通技巧', '領導能力'],
+        datasets: [{
+          label: '我的能力',
+          data: [70, 60, 50, 80, 70],
+          fill: true,
+          backgroundColor: 'rgba(135,206,235,0.2)',
+          borderColor: 'rgba(135,206,235,1)',
+          pointBackgroundColor: 'rgba(135,206,235,1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: { duration: 2000 },
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+            angleLines: { color: "rgba(255,255,255,0.2)" },
+            grid: { color: "rgba(255,255,255,0.2)" },
+            pointLabels: { color: "white" }
+          }
+        },
+        plugins: { legend: { labels: { color: "white" } } }
+      }
+    });
+
+    // 流星動畫 (隨機數量 + 隨機間隔)
+    function createMeteor() {
+      if (document.querySelectorAll(".meteor").length >= 6) return;
+      const meteor = document.createElement("div");
+      meteor.classList.add("meteor");
+      meteor.style.left = Math.random() * window.innerWidth + "px";
+      meteor.style.top = "-50px";
+      document.body.appendChild(meteor);
+      setTimeout(() => meteor.remove(), 3000);
+    }
+    function meteorLoop() {
+      createMeteor();
+      setTimeout(meteorLoop, Math.random() * 4000 + 2000); // 2~6秒隨機
+    }
+    meteorLoop();
+
+    // View count
+    let count = localStorage.getItem("viewCount") || 0;
+    count++;
+    localStorage.setItem("viewCount", count);
+    document.getElementById("viewCount").innerText = "觀看次數：" + count;
+
+    // Like button
+    const heart = document.getElementById("likeHeart");
+    let liked = false;
+    heart.addEventListener("click", () => {
+      liked = !liked;
+      heart.textContent = liked ? "❤" : "♡";
+      heart.classList.add("pop");
+      setTimeout(() => heart.classList.remove("pop"), 500);
+    });
+
+    // Back to top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Language toggle
+    const toggle = document.getElementById("langToggle");
+    let lang = "zh";
+    toggle.addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      toggle.innerText = lang === "zh" ? "EN" : "中";
+      document.querySelectorAll("[data-zh]").forEach(el => {
+        el.innerText = lang === "zh" ? el.dataset.zh : el.dataset.en;
+      });
+    });
+  </script>
+</body>
+</html>
